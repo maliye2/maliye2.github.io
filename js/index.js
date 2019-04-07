@@ -66,6 +66,16 @@ window.onload=function() {
         out_5.id = ""
         out_6.id = ""
     }
+
+//随机动画效果
+
+    function randomAni(){
+        //设置动画class名数组
+        let arrAniCla=["AinimAction_1","AinimAction_2","AinimAction_3","AinimAction_4","AinimAction_5"];
+        //产生1-4的随机数
+        let num=parseInt(Math.random()*5);
+        return arrAniCla[num];
+    }
 function action(){
     document.querySelector(".boxMove").onclick = function (e) {
         document.getElementsByClassName("menuBox")[0].className = "menuBox"
@@ -94,6 +104,7 @@ function action(){
                 document.getElementsByClassName("menuBox")[0].className = "menuBox menyBoxMove";
                 document.getElementsByClassName("showBox")[index].className = "showBox showNow"
                 document.querySelector(".boxMove").onclick=null;
+                document.getElementsByClassName("boxAinim")[index].className=`boxAinim ${randomAni()}`
                 e.stopPropagation();
             }
             e.stopPropagation()
@@ -102,7 +113,8 @@ function action(){
     }
 }
 document.querySelector(".menuBox").onclick=function(e){
-    this.className="menuBox"
+    this.className="menuBox";
+    let animBoxChild=document.getElementsByClassName("boxAinim");
     let showBoxAll=document.querySelectorAll(".showBox")
     for (let i=0;i<=showBoxAll.length-1;i++){
             showBoxAll[i].className="showBox"
@@ -110,8 +122,84 @@ document.querySelector(".menuBox").onclick=function(e){
     for(let i=0;i<BoxChild.length-1;i++ ){
             BoxChild[i].onclick=null;
         }
+    for(let i=0;i<animBoxChild.length-1;i++){
+        animBoxChild[i].className="boxAinim"
+    }
         remove()
         action()
         e.stopPropagation()
     }
+
+
+    //每个小展示块的选择器
+    let Show_1=document.querySelector("#Big_1");
+    let Show_2=document.querySelector("#Big_2");
+    let Show_3=document.querySelector("#Big_3");
+    let Show_4=document.querySelector("#Big_4");
+    let BigShowBox= document.querySelector(".bigShowBox");
+    let allGoodsBox=document.querySelectorAll(".explainBox");
+//给大小展示块设置背景尺寸,背景位置以及自己的位置
+    function BigBackground(imgUrl){
+        //获取此时大展示块的尺寸
+        let BigShowBoxW=BigShowBox.offsetWidth;
+        // BigShowBox.style.backgroundImage=`url(${imgUrl})`
+        //获取此时小版块的尺寸
+        let smallBoxW=Show_3.offsetWidth;
+        let smallBoxH=Show_3.offsetHeight;
+        //设置每个小展示块的背景尺寸
+        Show_1.style.backgroundImage=`url(${imgUrl})`
+        Show_1.style.backgroundSize=`${BigShowBoxW}px`;
+        Show_1.style.backgroundPosition=`0px 0px`;
+        //设置第二个小展示块的背景图定位
+        Show_2.style.backgroundImage=`url(${imgUrl})`
+        Show_2.style.backgroundSize=`${BigShowBoxW}px`
+        Show_2.style.backgroundPosition=`-${smallBoxW}px 0`;
+        //设置第三个
+        Show_3.style.backgroundImage=`url(${imgUrl})`
+        Show_3.style.backgroundSize=`${BigShowBoxW}px`;
+        Show_3.style.backgroundPosition=`0px -${smallBoxH}px`;
+        //设置第四个
+        Show_4.style.backgroundImage=`url(${imgUrl})`
+        Show_4.style.backgroundSize=`${BigShowBoxW}px`;
+        Show_4.style.backgroundPosition=`-${smallBoxW}px -${smallBoxH}px`
+    }
+//移动小展示块的函数
+    function moveSmall(){
+        Show_1.style.transform=`translateY(0%) translateX(0%)`;
+        Show_2.style.transform=`translateY(0%) translateX(0%)`;
+        Show_3.style.transform=`translateY(0%) translateX(0%)`;
+        Show_4.style.transform=`translateY(0%) translateX(0%)`;
+    }
+
+    // 动态展示效果
+    //给每个展示版块绑定事件
+    for (let i=0;i<=allGoodsBox.length-1;i++){
+        allGoodsBox[i].onclick=function(e){
+            //获取此时点击的方框的num值
+            let imgUrl=this.previousElementSibling.previousElementSibling.getAttribute("src");
+            console.log(imgUrl)
+            //显示大板块
+            BigShowBox.className="bigShowBox bigShowBoxMove";
+            //更换此时的背景图
+            BigBackground(imgUrl);
+            //移动小展示块
+            moveSmall()
+            document.body.onresize=function(e){
+                BigBackground(imgUrl);
+                e.stopPropagation()
+            }
+            e.stopPropagation();
+        }
+    }
+    document.querySelector(".close").onclick=function(e){
+
+        BigShowBox.className="bigShowBox";
+        Show_1.style="";
+        Show_2.style="";
+        Show_3.style="";
+        Show_4.style=""
+    }
+
+
+
 }

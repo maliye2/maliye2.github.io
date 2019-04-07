@@ -125,14 +125,11 @@ body{
     font-weight: bold;
 
 }
-#out{
-
-}
 /*PC端项目*/
 .showBox{
     width: 70%;
     height: 90%;
-    background-color: pink;
+    background-color:rgba(243,249,241,.4);
     margin: 10px auto;
     transition: all 1s;
     position: absolute;
@@ -140,8 +137,292 @@ body{
     top: 50%;
     transform: translateY(-50%) translateX(-50%) scale(0);
     transition: all .5s;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 .showNow{
     transform: translateY(-50%) translateX(-50%) scale(1);
     transition: all 1.5s;
+}
+/*每个页面中的动画*/
+.boxAinim{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    position: absolute;
+    top: -10%;
+    opacity: 0;
+    display: none;
+    font-size: 26px;
+    text-align: center;
+    line-height: 200px;
+    z-index: 10;
+}
+.AinimAction_1{
+    display: block;
+    animation: inandeout 2s linear;
+    color: #e9bb1d;
+}
+@keyframes inandeout {
+    0%{opacity: 0;
+        top: 100%; }
+    50%{opacity: 1;
+        top: 50%;}
+    100%{opacity: 0;
+        top: 0%;
+    display: none;}
+}
+.AinimAction_2{
+    display: block;
+    animation: inandeout_2 2s linear ;
+    color: #40de5a;
+}
+@keyframes inandeout_2 {
+    0%{opacity: 0;
+        top: 100%; }
+    25%{
+        opacity: 1;
+        top: 50%;
+        transform: rotateZ(10deg);
+    }
+    50%{opacity: 1;
+        top: 50%;
+        transform: rotateZ(-10deg);
+    }
+    75%{
+        opacity: 1;
+        top: 50%;
+        transform: rotateZ(10deg);
+    }
+    100%{opacity: 0;
+        top: 0%;
+        display: none;}
+}
+.AinimAction_3{
+    display: block;
+    animation: inandeout_3 2s linear;
+    color: #725e82;
+}
+@keyframes inandeout_3 {
+    0%{opacity: 0;
+        top: 20%;
+    transform: rotateZ(0deg) scale(0);}
+    50%{opacity: 1;
+        top: 20%;
+        transform: rotateZ(360deg) scale(1);
+    }
+    100%{opacity: 0;
+        top: 20%;
+        transform: rotateZ(0deg) scale(0);}
+}
+.AinimAction_4{
+    display: block;
+    animation: inandeout_4 2s linear;
+    color: #3d3b4f;
+}
+@keyframes inandeout_4 {
+    0%{opacity: 0;
+        top: 20%;
+        transform: rotateZ(0deg) scale(0);}
+    50%{opacity: 1;
+        top: 20%;
+        transform: rotateZ(360deg) scale(1);
+    }
+    100%{opacity: 0;
+        top: 20%;
+        transform: rotateZ(360deg)}
+}
+.AinimAction_5{
+    display: block;
+    animation: inandeout_5 2s linear;
+    color: #88ada6;
+}
+@keyframes inandeout_5 {
+    0%{opacity: 0;
+        top: 10%;
+        transform: rotateZ(-90deg);
+        transform-origin:left center;}
+    50%{opacity: 1;
+        top: 10%;
+        transform: rotateZ(0deg);
+        transform-origin:left center;
+    }
+    100%{opacity: 0;
+        top: 20%;
+        transform: rotateZ(0deg);
+        transform-origin:left center;
+    }
+}
+
+/*PC段页面展示界面*/
+.Pctitle{
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+    line-height: 40px;
+}
+.PcContent{
+    width: 100%;
+    background-color:transparent;
+    overflow-y: auto;
+    /*隐藏滚动条*/
+    margin-left: 13px;
+}
+/*最里面的盒子 目的是为了隐藏滚动条*/
+.conter_in{
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+}
+.goodsDiv{
+    width: 50%;
+    height: 520px;
+    background-color: transparent;
+    padding: 50px;
+    box-sizing: border-box;
+    background-clip: content-box;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10%;
+    margin-top: 10%;
+    cursor: pointer;
+}
+.projectImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+    display: block;
+}
+/*shadeBox 遮罩层*/
+.shadeBox{
+    width: 80%;
+    height: 80%;
+    background-color: rgba(00,00,00,.4);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    transition: all 1s;
+    border-radius: 10%;
+}
+.goodsDiv:hover .shadeBox{
+    transform: scale(0) translateY(-300px);
+    opacity: 0;
+    border-radius: 50%;
+}
+.explainBox{
+    width: 80%;
+    height: 100%;
+    background-color: rgba(00,00,00,0);
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 520px;
+    transform: scale(0) translateY(-50%) translateX(-50%);
+    transition: all .8s;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 10%;
+}
+.goodsDiv:hover .explainBox{
+    transform: scale(1) translateY(-50%) translateX(-50%);
+    background-color: rgba(00,00,00,.3);
+}
+/*.goodsDiv:hover{*/
+    /*animation: shiver .5s linear;*/
+/*}*/
+/*@keyframes shiver{*/
+    /*0%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+    /*10%{*/
+        /*transform: rotateZ(5deg);*/
+    /*}*/
+    /*20%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+    /*30%{*/
+        /*transform: rotateZ(-5deg);*/
+    /*}*/
+    /*40%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+    /*50%{*/
+        /*transform: rotateZ(5deg);*/
+    /*}*/
+    /*60%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+    /*70%{*/
+        /*transform: rotateZ(-5deg);*/
+    /*}*/
+    /*80%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+    /*90%{*/
+        /*transform: rotateZ(5deg);*/
+    /*}*/
+    /*100%{*/
+        /*transform: rotateZ(0deg);*/
+    /*}*/
+/*}*/
+
+/*大型展示窗口*/
+.bigShowBox{
+    width:80%;
+    height: 80%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transition: all 2s;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    display: flex;
+    flex-wrap:wrap;
+}
+.bigShowBoxMove{
+    z-index: 100;
+    transition: all 2s;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    background-color: transparent;
+    background-size: 100%;
+}
+#Big_1,#Big_2,#Big_3,#Big_4{
+    width: 50%;
+    height: 50%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    transition: all 2s;
+}
+#Big_1{
+    transform: translateY(-50%) translateX(-50%);
+    background-position: 0px 0px;
+}
+#Big_2{
+    transform: translateY(-50%) translateX(50%);
+}
+#Big_3{
+    transform: translateY(50%) translateX(-50%);
+}
+#Big_4{
+    transform: translateY(50%) translateX(50%);
+}
+.close{
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    display: block;
+    z-index: 200;
+    background-color: rgba(0,0,0,.4);
+    border-radius: 10px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    font-size: 12px;
 }
