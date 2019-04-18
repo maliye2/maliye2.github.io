@@ -275,6 +275,7 @@ body{
     background-color: transparent;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 .goodsDiv{
     width: 50%;
@@ -426,3 +427,4 @@ body{
     cursor: pointer;
     font-size: 12px;
 }
+/*移动端项目*/

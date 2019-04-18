@@ -66,9 +66,7 @@ window.onload=function() {
         out_5.id = ""
         out_6.id = ""
     }
-
 //随机动画效果
-
     function randomAni(){
         //设置动画class名数组
         let arrAniCla=["AinimAction_1","AinimAction_2","AinimAction_3","AinimAction_4","AinimAction_5"];
@@ -129,8 +127,6 @@ document.querySelector(".menuBox").onclick=function(e){
         action()
         e.stopPropagation()
     }
-
-
     //每个小展示块的选择器
     let Show_1=document.querySelector("#Big_1");
     let Show_2=document.querySelector("#Big_2");
@@ -192,7 +188,6 @@ document.querySelector(".menuBox").onclick=function(e){
         }
     }
     document.querySelector(".close").onclick=function(e){
-
         BigShowBox.className="bigShowBox";
         Show_1.style="";
         Show_2.style="";
